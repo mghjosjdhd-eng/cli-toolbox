@@ -3,13 +3,13 @@
 import argparse
 import sys
 
-from tools import renamer, jsonfmt, stats, toc
+from tools import renamer, jsonfmt, stats, toc, wordcount
 
 
 def main():
     parser = argparse.ArgumentParser(
         prog="toolbox",
-        description="CLI 工具箱：文件重命名、JSON 格式化、文本统计、Markdown 目录生成",
+        description="CLI 工具箱：文件重命名、JSON 格式化、文本统计、词频统计、Markdown 目录生成",
     )
     subparsers = parser.add_subparsers(dest="command", help="可用子命令")
 
@@ -35,6 +35,11 @@ def main():
     p_stats = subparsers.add_parser("stats", help="文本统计")
     p_stats.add_argument("files", nargs="+", help="要统计的文件（支持通配符）")
 
+    # ---- wordcount ----
+    p_wc = subparsers.add_parser("wordcount", help="词频统计")
+    p_wc.add_argument("file", help="要统计的文件路径")
+    p_wc.add_argument("--top", type=int, default=10, help="显示出现次数最多的前 N 个词（默认 10）")
+
     # ---- toc ----
     p_toc = subparsers.add_parser("toc", help="生成 Markdown 目录")
     p_toc.add_argument("file", help="Markdown 文件路径")
@@ -53,6 +58,8 @@ def main():
         jsonfmt.run(args)
     elif args.command == "stats":
         stats.run(args)
+    elif args.command == "wordcount":
+        wordcount.run(args)
     elif args.command == "toc":
         toc.run(args)
 

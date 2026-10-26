@@ -9,11 +9,12 @@
     - [2. JSON 格式化 (`jsonfmt`)](#2-json-格式化-jsonfmt)
     - [3. 文本统计 (`stats`)](#3-文本统计-stats)
     - [4. Markdown 目录生成 (`toc`)](#4-markdown-目录生成-toc)
+    - [5. 词频统计 (`wordcount`)](#5-词频统计-wordcount)
   - [运行测试](#运行测试)
 
 
 
-一个小巧实用的 Python 命令行工具箱，包含日常开发中常用的 4 个小工具。
+一个小巧实用的 Python 命令行工具箱，包含日常开发中常用的 5 个小工具。
 
 ## 安装
 
@@ -72,6 +73,16 @@ python toolbox.py stats *.py
 ```bash
 # 生成目录并插入到文件中
 python toolbox.py toc README.md
+```
+
+### 5. 词频统计 (`wordcount`)
+
+```bash
+# 统计出现次数最多的前 10 个词（英文单词整体计，汉字逐个计）
+python toolbox.py wordcount README.md
+
+# 只看前 5 个
+python toolbox.py wordcount README.md --top 5
 ```
 
 ## 运行测试
